@@ -1,0 +1,61 @@
+@import "tailwindcss";
+
+summary::-webkit-details-marker {
+  display: none
+}
+
+body {
+  font-family: "Inter", sans-serif;
+}
+
+.pageWidth{
+  @apply lg:max-w-6xl mx-auto px-3 lg:px-10 
+}
+
+.innerPageWidth{
+  @apply max-w-4xl mx-auto
+}
+
+.text-xxs{
+  @apply text-[10px]
+}
+
+
+@theme {
+  --color-primary: #005055;
+
+
+  --font-montserrat: "Montserrat", sans-serif;
+  --font-jakarta: "Plus Jakarta Sans", sans-serif;
+
+  --text-xxs: '10px'
+}
+
+.login_width{
+  @apply max-w-xs w-full mx-auto px-3 md:px-0
+}
+
+/* 
+tr{
+  @apply border-b-[1px] 
+}
+
+th{
+  @apply py-2 px-4 text-left whitespace-nowrap font-montserrat text-xs
+}
+
+td{
+  @apply py-2 px-4
+}
+
+
+.btn{
+  @apply py-3 px-7 rounded-full
+} */
+
+
+/* .text-vivid {
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8),
+               0 4px 16px rgba(0, 0, 0, 0.6);
+}
+ */
