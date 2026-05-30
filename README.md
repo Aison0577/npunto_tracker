@@ -233,7 +233,7 @@ Every status update creates a log entry with an `action_type`:
 | HTTP     | Axios with interceptor error handling |
 
 ---
-## Platform Screenshots
+## Application Screenshots
 ![Screenshot](shots/Screenshot%20(365).png)
 ![Screenshot](shots/Screenshot%20(366).png)
 ![Screenshot](shots/Screenshot%20(367).png)
