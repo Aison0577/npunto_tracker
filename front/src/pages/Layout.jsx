@@ -9,31 +9,47 @@ import {
   Calendar02Icon,
 } from "hugeicons-react";
 import useAuth from "../hooks/AuthStore";
-// import { useLogout } from "../../services/api/tanstack";
 import toast from "react-hot-toast";
+import { useAccountLogout } from "../services/api/tanstack";
+import { CircularProgress } from "@mui/material";
+import Drawer from "../component/SideDrawer";
 
 const navItems = [
   { to: "/tracker/dashboard", label: "Dashboard", Icon: DashboardSquare01Icon },
   { to: "/tracker/activity/new", label: "New Activity", Icon: PinIcon },
   { to: "/tracker/daily", label: "Daily View", Icon: Calendar01Icon },
-  { to: "/tracker/activity/all", label: "All Activities", Icon: Calendar02Icon },
+  // { to: "/tracker/activity/all", label: "All Activities", Icon: Calendar02Icon },
+  // { to: "/tracker/reports", label: "Log Reports", Icon: ChartBarLineIcon },
+  // { to: "/tracker/team", label: "Team", Icon: UserGroupIcon },
+];
+
+const adminNavItems = [
+  { to: "/tracker/dashboard", label: "Dashboard", Icon: DashboardSquare01Icon },
+  { to: "/tracker/activity/new", label: "New Activity", Icon: PinIcon },
+  { to: "/tracker/daily", label: "Daily View", Icon: Calendar01Icon },
+  {
+    to: "/tracker/activity/all",
+    label: "All Activities",
+    Icon: Calendar02Icon,
+  },
   { to: "/tracker/reports", label: "Log Reports", Icon: ChartBarLineIcon },
   { to: "/tracker/team", label: "Team", Icon: UserGroupIcon },
 ];
 
-export default function AdminLayout() {
+export default function Layout() {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
-  // const { mutate } = useLogout();
+  const { mutate, isPending } = useAccountLogout();
 
   const handleLogout = () => {
-    // mutate(null, {
-    //   onSettled: () => {
-    //     logout();
-    //     toast.success("Logged out");
-    //     navigate("/");
-    //   },
-    // });
+    mutate(null, {
+      onSettled: (data) => {
+        console.log(data);
+        toast.success(data);
+        logout();
+        navigate("/");
+      },
+    });
   };
 
   const initials = user?.name
@@ -43,10 +59,12 @@ export default function AdminLayout() {
     .toUpperCase()
     .slice(0, 2);
 
+  const currentUserLinks = user.role === "admin" ? adminNavItems : navItems;
+
   return (
     <div className="flex h-screen overflow-hidden bg-gray-50">
       {/* Sidebar */}
-      <aside className="w-56 shrink-0 bg-white border-r border-gray-100 flex flex-col">
+      <aside className="w-56 shrink-0 bg-white border-r border-gray-100 lg:flex flex-col hidden">
         {/* Brand */}
         <div className="px-5 py-5 border-b border-gray-100">
           <p className="font-jakarta font-extrabold text-lg text-gray-800 tracking-tight">
@@ -59,7 +77,7 @@ export default function AdminLayout() {
 
         {/* Nav */}
         <nav className="flex-1 px-3 py-4 space-y-0.5">
-          {navItems.map(({ to, label, Icon }) => (
+          {currentUserLinks.map(({ to, label, Icon }) => (
             <NavLink
               key={to}
               to={to}
@@ -95,9 +113,16 @@ export default function AdminLayout() {
           <button
             onClick={handleLogout}
             className="mt-1 w-full flex items-center gap-2 px-3 py-2 text-xs text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-xl transition-colors"
+            disabled={isPending}
           >
-            <Logout01Icon size={14} />
-            Sign out
+            {isPending ? (
+              <CircularProgress size={20} className="mx-auto" />
+            ) : (
+              <>
+                <Logout01Icon size={14} />
+                Sign out
+              </>
+            )}
           </button>
         </div>
       </aside>

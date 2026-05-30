@@ -26,6 +26,24 @@ export const useLogin=()=>
     })
 }
 
+export const useAccountLogout=()=>
+{
+    return useMutation({
+        mutationKey:['auth-logout'],
+        mutationFn:async()=>{
+            const res = await AUTH.useLogout()
+            if(res.success)
+            {
+                return res.message
+            }
+        },
+        onError:(error)=>
+        {
+            toast.error(error.message ?? "Something went wrong");
+        }
+    })
+}
+
 export const useCreateNewActivity=()=>
     {
         return useMutation({

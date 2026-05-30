@@ -13,11 +13,13 @@ Route::prefix('v1')->group(function () {
     Route::prefix('auth')->group(function (){
         Route::get('/sanctum/csrf-cookie',     [AuthController::class,'showCsrfCookie']);
         Route::post('/login',                  [AuthController::class,'login']);
-        Route::post('/',                       [AuthController::class,'register']);
     });
 
 
     Route::middleware(['auth:sanctum'])->group(function () {
+        // LOGOUT
+        Route::get('/auth/logout',                       [AuthController::class,'logout']);
+
         // ── Activities ───────────────────────────────────────────────────────────
         Route::prefix('activities')->group(function () {
             Route::get('/',                       [ActivityController::class, 'index']);

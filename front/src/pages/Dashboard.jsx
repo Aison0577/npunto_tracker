@@ -1,6 +1,4 @@
 import React from "react";
-// import Header from "../../component/Header";
-// import DashboardAnalysisBar from "../../component/DashboardAnalysisBar";
 import { Link, useNavigate } from "react-router-dom";
 import { format } from "date-fns";
 import Header from "../component/Header";
@@ -29,7 +27,7 @@ export default function Dashboard() {
   };
 
   return (
-    <div className="bg-gray-50 min-h-screen">
+    <div className="bg-gray-50 min-h-screen h-screen">
       <Header
         title={"Dashboard"}
         options={
@@ -40,9 +38,8 @@ export default function Dashboard() {
           </Link>
         }
       />
-      <div className="flex flex-row overflow-hidden h-full">
-        <DashboardAnalysisBar />
-        <div className="flex-1 overflow-auto ">
+      <div className="flex flex-row overflow-auto h-[calc(100vh-80px)]">
+        <div className="flex-1 h-full">
           <main className="pageWidth py-6">
             {/* Greeting */}
             <div className="flex items-center justify-between mb-6">
@@ -85,7 +82,7 @@ export default function Dashboard() {
                   </Link>
                 </div>
               ) : (
-                <table className="w-full text-sm">
+                <table className="w-full text-sm overflow-auto">
                   <thead>
                     <tr className="border-b border-gray-100">
                       {[
@@ -143,6 +140,7 @@ export default function Dashboard() {
             </div>
           </main>
         </div>
+        <DashboardAnalysisBar />
       </div>
     </div>
   );

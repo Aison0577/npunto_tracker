@@ -35,9 +35,9 @@ export default function Landing() {
   };
 
   return (
-    <main className="h-screen w-full grid grid-cols-5 overflow-hidden">
+    <main className="h-screen w-full lg:grid grid-cols-5 overflow-hidden">
       {/* side image */}
-      <section className="col-span-3 relative">
+      <section className="col-span-3 relative hidden lg:block">
         <img
           src={images.sideImage}
           alt=""
@@ -47,7 +47,7 @@ export default function Landing() {
       </section>
 
       {/* Side Auth Form */}
-      <aside className="col-span-2 flex items-center justify-center h-full">
+      <aside className="lg:col-span-2 flex items-center justify-center h-full">
         {/* Inner wrapper */}
         <div className="login_width">
           <p className="font-montserrat text-2xl font-bold text-gray-700">

@@ -1,17 +1,14 @@
 import { useState } from "react";
 import { format, subDays, addDays } from "date-fns";
 import {
-  Alert01Icon,
   ArrowLeft01Icon,
   ArrowRight01Icon,
-  Clock01Icon,
 } from "hugeicons-react";
 import { useDailyView } from "../services/api/tanstack";
 import ActivityCard from "../component/cards/ActivityCard";
 import Header from "../component/Header";
-import { TextField } from "@mui/material";
 
-export default function AdminDailyView() {
+export default function DailyView() {
   const [date, setDate] = useState(format(new Date(), "yyyy-MM-dd"));
   const { data, isLoading } = useDailyView(date);
 
@@ -67,7 +64,7 @@ export default function AdminDailyView() {
         </div>
 
         {/* Activities */}
-        <div className="grid grid-cols-3 gap-3">
+        <div className="grid grid-cols-2 lg:grid-cols-3 gap-3">
           {isLoading ? (
             <>
               {[1, 2, 3].map((i) => (

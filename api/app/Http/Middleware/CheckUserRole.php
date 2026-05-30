@@ -20,7 +20,7 @@ class CheckUserRole
         }
 
 
-        if (!in_array($user->role,['admin'])) {
+        if ($user->role !== 'admin') {
             return response()->json([
                 'success' => false,
                 'message' => 'You are not authourized as admin'

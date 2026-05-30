@@ -40,10 +40,7 @@ class AuthController extends Controller
 
         Auth::login($user);
 
-        //  Generate Sanctum token
-         $token = $user->createToken('user-token')->plainTextToken;
-
-         return response()->json([
+        return response()->json([
             'success' => true,
             'data'=> [
                 'user' => $user,
@@ -54,48 +51,14 @@ class AuthController extends Controller
     }
 
 
-
-    public function register(Request $request)
-    {
-        $data = $request->validate([
-            'name' => 'required|string',
-            'bio' => 'required|string',
-            'phone' => 'required|string|unique:users,phone',
-            'email' => 'required|string|unique:users,email',
-            'role' => 'required|in:poster,worker,both,admin',
-            'password' => 'required|confirmed',
-        ]);
-
-        $user = User::create([
-           'name'=> $data['name'],
-           'phone'=> $data['phone'],
-           'email'=> $data['email'],
-           'role'=> $data['role'],
-           'bio'=> $data['bio'],
-           'password'=> Hash::make($data['password']),
-        ]);
-
-        return response()->json([
-            'success'=> true,
-            'message' => 'Accout ready',
-            'user' => $user
-        ]);
-    }
-
-
     public function logout(Request $request)
     {
-        // Delete Sanctum token if using token-based auth (Electron)
-        if ($request->user() && $request->bearerToken()) {
-            $request->user()->currentAccessToken()->delete();
-        }
 
-        // Only invalidate session if one exists (web cookie auth)
-        if ($request->hasSession()) {
-            Auth::logout();
+
+            Auth::guard('web')->logout();
             $request->session()->invalidate();
             $request->session()->regenerateToken();
-        }
+
 
         return response()->json([
             'success' => true,

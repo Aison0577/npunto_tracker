@@ -8,7 +8,7 @@ use App\Models\ActivityLog;
 class ActivityLogService{
     public static function newLog(int $activityId,int $userId,string $remarks,string $old_status, string $new_status,string $action_type)
     {
-        // Store edit reason as a log entry before updating
+        // Store
         ActivityLog::create([
             'activity_id' => $activityId,
             'user_id'     => $userId,

@@ -10,40 +10,6 @@ use Illuminate\Support\Facades\DB;
 
 class ActivityLogController extends Controller
 {
-    /**
-     * GET /api/logs/daily?date=YYYY-MM-DD
-     * Returns ALL activities for a given date with every log entry that day.
-     * Designed for shift handover — shows who did what and when.
-     */
-    public function daily(Request $request): JsonResponse
-    {
-        $date = $request->query('date', now()->toDateString());
-
-        $activities = Activity::with([
-            'creator:id,name,department',
-            'logs' => function ($q) use ($date) {
-                $q->whereDate('log_date', $date)
-                  ->with('user:id,name,department,avatar')
-                  ->orderBy('log_date', 'asc');
-            },
-        ])
-        ->whereDate('scheduled_for', $date)
-        ->orderBy('scheduled_for', 'asc')
-        ->get();
-
-        // Flag activities still pending at end of day for handover
-        $handoverNeeded = $activities->filter(
-            fn($a) => $a->status === 'pending'
-        )->values();
-
-        return response()->json([
-            'success'        => true,
-            'date'           => $date,
-            'activities'     => $activities,
-            'handover_count' => $handoverNeeded->count(),
-            'handover_items' => $handoverNeeded->pluck('title'),
-        ]);
-    }
 
     /**
      * GET /api/logs/report?from=YYYY-MM-DD&to=YYYY-MM-DD&activity_id=&user_id=&status=
@@ -105,4 +71,63 @@ class ActivityLogController extends Controller
         ]);
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// /**
+    //  * GET /api/logs/daily?date=YYYY-MM-DD
+    //  * Returns ALL activities for a given date with every log entry that day.
+    //  * Designed for shift handover — shows who did what and when.
+    //  */
+    // public function daily(Request $request): JsonResponse
+    // {
+    //     $date = $request->query('date', now()->toDateString());
+
+    //     $activities = Activity::with([
+    //         'creator:id,name,department',
+    //         'logs' => function ($q) use ($date) {
+    //             $q->whereDate('log_date', $date)
+    //               ->with('user:id,name,department,avatar')
+    //               ->orderBy('log_date', 'asc');
+    //         },
+    //     ])
+    //     ->whereDate('scheduled_for', $date)
+    //     ->orderBy('scheduled_for', 'asc')
+    //     ->get();
+
+    //     // Flag activities still pending at end of day for handover
+    //     $handoverNeeded = $activities->filter(
+    //         fn($a) => $a->status === 'pending'
+    //     )->values();
+
+    //     return response()->json([
+    //         'success'        => true,
+    //         'date'           => $date,
+    //         'activities'     => $activities,
+    //         'handover_count' => $handoverNeeded->count(),
+    //         'handover_items' => $handoverNeeded->pluck('title'),
+    //     ]);
+    // }
 

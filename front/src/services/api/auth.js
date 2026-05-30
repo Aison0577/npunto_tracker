@@ -10,18 +10,17 @@ export const AUTH = {
       throw getErrorMessage(error);
     }
   },
-  
-  useCreateAccount: async (payload) => {
+  useLogin: async(payload) => {
     try {
-      const { data } = await apiClient.post("/auth/register",payload);
+      const { data } = await apiClient.post("/auth/login",payload);
       return data;
     } catch (error) {
       throw getErrorMessage(error);
     }
   },
-  useLogin: async(payload) => {
+  useLogout: async() => {
     try {
-      const { data } = await apiClient.post("/auth/login",payload);
+      const { data } = await apiClient.get("/auth/logout");
       return data;
     } catch (error) {
       throw getErrorMessage(error);

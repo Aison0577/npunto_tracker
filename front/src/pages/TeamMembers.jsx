@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { UserAdd01Icon } from "hugeicons-react";
 import useAuth from "../../src/hooks/AuthStore";
 import toast from "react-hot-toast";
 import Header from "../component/Header";

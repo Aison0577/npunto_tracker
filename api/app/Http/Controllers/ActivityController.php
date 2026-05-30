@@ -47,7 +47,7 @@ class ActivityController extends Controller
 
     /**
      * POST /api/activities
-     * Admin creates a new activity.
+     * Team member creates a new activity.
      */
     public function store(Request $request): JsonResponse
     {
@@ -115,7 +115,7 @@ class ActivityController extends Controller
 
     /**
      * PUT /api/activities/{id}
-     * Status changes must go through ActivityLogController@store.
+     * Update for changing details of activity .
      */
     public function update(Request $request, Activity $activity): JsonResponse
     {
@@ -169,8 +169,8 @@ class ActivityController extends Controller
     }
 
     /**
-     * PUT /api/activities/{id}/status
-     * Status changes must go through ActivityLogController@store.
+     * PATCH /api/activities/{id}/status
+     * Status Updates on activity.
      */
     public function updateStatus(Request $request, Activity $activity): JsonResponse
     {
@@ -245,7 +245,7 @@ class ActivityController extends Controller
             'remarks' => 'required|string'
         ]);
 
-
+        $old_status = $activity->status;
 
         $activity->update(['status' => 'cancelled']);
 
@@ -254,7 +254,7 @@ class ActivityController extends Controller
             auth()->id(),
             $data['remarks'],
             $old_status,
-            $data['status']
+            $activity['status']
         );
 
         if(!$logResponse)

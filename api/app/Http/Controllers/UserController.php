@@ -9,7 +9,10 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    //
+    /**
+     * GET /api/users
+     * All users on the system (admin only).
+    */
     public function index(Request $request): JsonResponse
     {
         $team = User::all();
@@ -17,6 +20,10 @@ class UserController extends Controller
     }
 
 
+    /**
+     * POST /api/users
+     * New User to Team (admin only).
+    */
     public function store(Request $request): JsonResponse
     {
         $request->validate([
@@ -49,6 +56,11 @@ class UserController extends Controller
         ], 201);
     }
 
+
+    /**
+     * DELETE /api/users/{id}
+     * Remove User from system (admin only).
+    */
     public function destroy(User $user): JsonResponse
     {
         $user->delete();
@@ -58,6 +70,10 @@ class UserController extends Controller
         ]);
     }
 
+
+    /**
+     * Team Member Code Generator.
+    */
     private function generateMemberCode(): string
     {
         do {

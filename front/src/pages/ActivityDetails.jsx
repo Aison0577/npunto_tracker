@@ -189,7 +189,7 @@ export default function ActivityDetails() {
               <div>
                 <p className="font-jakarta font-semibold text-gray-900 text-sm">
                   {activity?.scheduled_for
-                    ? format(new Date(activity.scheduled_for), "h:mm a")
+                    ? format(new Date(activity?.scheduled_for), "h:mm a")
                     : "No time set"}
                 </p>
                 <p className="text-xs text-gray-500">

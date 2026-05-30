@@ -1,5 +1,5 @@
 import { Menu, MenuItem } from "@mui/material";
-import { Menu03Icon } from "hugeicons-react";
+import { Menu03Icon, Menu05Icon } from "hugeicons-react";
 import React, { useState } from "react";
 
 export default function MenuDropDown({ items, btn }) {
@@ -15,7 +15,7 @@ export default function MenuDropDown({ items, btn }) {
         <button onClick={handleOpen}>{btn}</button>
       ) : (
         <button onClick={handleOpen} className="p-2 rounded-2xl bg-gray-100">
-          <Menu03Icon size={20} />
+          <Menu05Icon size={20} />
         </button>
       )}
 
