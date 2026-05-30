@@ -234,16 +234,16 @@ Every status update creates a log entry with an `action_type`:
 
 ---
 ## Application Screenshots
-![Screenshot]('./shots/Screenshot (365).png')
-![Screenshot]('./shots/Screenshot (366).png')
-![Screenshot]('./shots/Screenshot (367).png')
-![Screenshot]('./shots/Screenshot (368).png')
-![Screenshot]('./shots/Screenshot (369).png')
-![Screenshot]('./shots/Screenshot (370).png')
-![Screenshot]('./shots/Screenshot (371).png')
-![Screenshot]('./shots/Screenshot (372).png')
-![Screenshot]('./shots/Screenshot (373).png')
-![Screenshot]('./shots/Screenshot (374).png')
+![Screenshot](shots/Screenshot%20(365).png)
+![Screenshot](shots/Screenshot%20(366).png)
+![Screenshot](shots/Screenshot%20(367).png)
+![Screenshot](shots/Screenshot%20(368).png)
+![Screenshot](shots/Screenshot%20(369).png)
+![Screenshot](shots/Screenshot%20(370).png)
+![Screenshot](shots/Screenshot%20(371).png)
+![Screenshot](shots/Screenshot%20(372).png)
+![Screenshot](shots/Screenshot%20(373).png)
+![Screenshot](shots/Screenshot%20(374).png)
 
 ## Support
 
