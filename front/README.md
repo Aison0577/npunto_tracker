@@ -8,7 +8,7 @@ System for tracking staff acitivities and actions/updates performed on this acti
 Clone the Project
 Clone this repository to your local machine using Git:
 
-`git clone https://github.com/aison0577/npunto_tracker`
+`git clone https://github.com/Aison0577/npunto_tracker`
 
 ## 🛠️ Development guide
 1. **Configure .env**<br/>

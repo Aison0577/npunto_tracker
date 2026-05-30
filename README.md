@@ -22,7 +22,7 @@ Built with **Laravel 12** (REST API) + **React + Vite** (SPA).
 ## Quick Start
 
 ```bash
-git clone https://github.com/aison@0577/npunto_tracker
+git clone https://github.com/Aison0577/npunto_tracker
 cd npunto_tracker
 ```
 
